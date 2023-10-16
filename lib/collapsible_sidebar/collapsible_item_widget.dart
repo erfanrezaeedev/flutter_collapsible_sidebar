@@ -68,11 +68,8 @@ class _CollapsibleItemWidgetState extends State<CollapsibleItemWidget> {
                   onLongPress: widget.onLongPress,
                   child: Row(
                     children: [
-                      Container(
-                        height: boxConstraints.smallest.height,
-                        width: boxConstraints.smallest.width,
-                        child: widget.leading,
-                      ),
+                       widget.leading,
+
                       _title
                     ],
                   ),
@@ -96,7 +93,8 @@ class _CollapsibleItemWidgetState extends State<CollapsibleItemWidget> {
                   ),
                   onTapMainLevel: widget.onTap,
                   subItems: widget.subItems!,
-                  extendable: widget.isCollapsed != false || widget.isSelected != false,
+                  extendable:
+                      widget.isCollapsed != false || widget.isSelected != false,
                   disable: widget.isCollapsed,
                   iconColor: widget.iconColor,
                   iconSize: widget.iconSize,
@@ -112,17 +110,22 @@ class _CollapsibleItemWidgetState extends State<CollapsibleItemWidget> {
         opacity: widget.scale,
         child: Transform.translate(
           offset: Offset(
-            Directionality.of(context) == TextDirection.ltr ? widget.offsetX : 0,
+            Directionality.of(context) == TextDirection.ltr
+                ? widget.offsetX
+                : 0,
             0,
           ),
           child: Transform.scale(
             scale: widget.scale,
-            child: Text(
+            child: Container(margin: EdgeInsets.only(right: 10),child: Text(
               widget.title,
-              style: _underline ? widget.textStyle.merge(TextStyle(decoration: TextDecoration.underline)) : widget.textStyle,
+              style: _underline
+                  ? widget.textStyle
+                  .merge(TextStyle(decoration: TextDecoration.underline))
+                  : widget.textStyle,
               softWrap: false,
               overflow: TextOverflow.fade,
-            ),
+            ),),
           ),
         ),
       ),
