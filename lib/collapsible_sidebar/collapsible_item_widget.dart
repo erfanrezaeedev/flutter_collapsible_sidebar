@@ -69,6 +69,7 @@ class _CollapsibleItemWidgetState extends State<CollapsibleItemWidget> {
                   child: Row(
                     children: [
                       widget.leading,
+                     SizedBox(width: 20,),
                       _title,
                     ],
                   ),
@@ -109,7 +110,7 @@ class _CollapsibleItemWidgetState extends State<CollapsibleItemWidget> {
         opacity: widget.scale,
         child: Transform.translate(
           offset: Offset(
-            Directionality.of(context) == TextDirection.ltr
+            Directionality.of(context) == TextDirection.rtl
                 ? widget.offsetX
                 : 0,
             0,
