@@ -69,7 +69,6 @@ class _CollapsibleItemWidgetState extends State<CollapsibleItemWidget> {
                   child: Row(
                     children: [
                     Flexible(child: widget.leading),
-
                       _title
                     ],
                   ),
