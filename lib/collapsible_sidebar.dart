@@ -12,52 +12,53 @@ import 'package:flutter/material.dart';
 export 'package:collapsible_sidebar/collapsible_sidebar/collapsible_item.dart';
 
 class CollapsibleSidebar extends StatefulWidget {
-  const CollapsibleSidebar({
-    Key? key,
-    required this.items,
-    required this.body,
-    this.title = 'Lorem Ipsum',
-    this.titleStyle,
-    this.titleBack = false,
-    this.titleBackIcon = Icons.arrow_back,
-    this.onHoverPointer = SystemMouseCursors.click,
-    this.textStyle,
-    this.toggleTitleStyle,
-    this.toggleTitle = 'Collapse',
-    this.avatarImg,
-    this.height = double.infinity,
-    this.minWidth = 80,
-    this.maxWidth = 270,
-    this.borderRadius = 15,
-    this.iconSize = 40,
-    this.toggleButtonIcon = Icons.chevron_right,
-    this.backgroundColor = const Color(0xff2B3138),
-    this.selectedIconBox = const Color(0xff2F4047),
-    this.selectedIconColor = const Color(0xff4AC6EA),
-    this.selectedTextColor = const Color(0xffF3F7F7),
-    this.unselectedIconColor = const Color(0xff6A7886),
-    this.unselectedTextColor = const Color(0xffC0C7D0),
-    this.duration = const Duration(milliseconds: 500),
-    this.curve = Curves.fastLinearToSlowEaseIn,
-    this.screenPadding = 4,
-    this.showToggleButton = true,
-    this.topPadding = 0,
-    this.bottomPadding = 0,
-    this.itemPadding = 10,
-    this.fitItemsToBottom = false,
-    this.onTitleTap,
-    this.isCollapsed = true,
-    this.collapseOnBodyTap = true,
-    this.showTitle = true,
-    this.sidebarBoxShadow = const [
-      BoxShadow(
-        color: Colors.blue,
-        blurRadius: 10,
-        spreadRadius: 0.01,
-        offset: Offset(3, 3),
-      ),
-    ],
-  }) : super(key: key);
+  const CollapsibleSidebar(
+      {Key? key,
+      required this.items,
+      required this.body,
+      this.title = 'Lorem Ipsum',
+      this.titleStyle,
+      this.titleBack = false,
+      this.titleBackIcon = Icons.arrow_back,
+      this.onHoverPointer = SystemMouseCursors.click,
+      this.textStyle,
+      this.toggleTitleStyle,
+      this.toggleTitle = 'Collapse',
+      this.avatarImg,
+      this.height = double.infinity,
+      this.minWidth = 80,
+      this.maxWidth = 270,
+      this.borderRadius = 15,
+      this.iconSize = 40,
+      this.toggleButtonIcon = Icons.chevron_right,
+      this.backgroundColor = const Color(0xff2B3138),
+      this.selectedIconBox = const Color(0xff2F4047),
+      this.selectedIconColor = const Color(0xff4AC6EA),
+      this.selectedTextColor = const Color(0xffF3F7F7),
+      this.unselectedIconColor = const Color(0xff6A7886),
+      this.unselectedTextColor = const Color(0xffC0C7D0),
+      this.duration = const Duration(milliseconds: 500),
+      this.curve = Curves.fastLinearToSlowEaseIn,
+      this.screenPadding = 4,
+      this.showToggleButton = true,
+      this.topPadding = 0,
+      this.bottomPadding = 0,
+      this.itemPadding = 10,
+      this.fitItemsToBottom = false,
+      this.onTitleTap,
+      this.isCollapsed = true,
+      this.collapseOnBodyTap = true,
+      this.showTitle = true,
+      this.direction = TextDirection.ltr,
+      this.sidebarBoxShadow = const [
+        BoxShadow(
+          color: Colors.blue,
+          blurRadius: 10,
+          spreadRadius: 0.01,
+          offset: Offset(3, 3),
+        ),
+      ]})
+      : super(key: key);
 
   final avatarImg;
   final String title, toggleTitle;
@@ -65,53 +66,29 @@ class CollapsibleSidebar extends StatefulWidget {
   final TextStyle? titleStyle, textStyle, toggleTitleStyle;
   final IconData titleBackIcon;
   final Widget body;
-  final bool showToggleButton,
-      fitItemsToBottom,
-      isCollapsed,
-      titleBack,
-      showTitle,
-      collapseOnBodyTap;
+  final bool showToggleButton, fitItemsToBottom, isCollapsed, titleBack, showTitle, collapseOnBodyTap;
   final List<CollapsibleItem> items;
-  final double height,
-      minWidth,
-      maxWidth,
-      borderRadius,
-      iconSize,
-      padding = 10,
-      itemPadding,
-      topPadding,
-      bottomPadding,
-      screenPadding;
+  final double height, minWidth, maxWidth, borderRadius, iconSize, padding = 10, itemPadding, topPadding, bottomPadding, screenPadding;
   final IconData toggleButtonIcon;
-  final Color backgroundColor,
-      selectedIconBox,
-      selectedIconColor,
-      selectedTextColor,
-      unselectedIconColor,
-      unselectedTextColor;
+  final Color backgroundColor, selectedIconBox, selectedIconColor, selectedTextColor, unselectedIconColor, unselectedTextColor;
   final Duration duration;
   final Curve curve;
   final VoidCallback? onTitleTap;
   final List<BoxShadow> sidebarBoxShadow;
+  final TextDirection? direction;
 
   @override
   _CollapsibleSidebarState createState() => _CollapsibleSidebarState();
 }
 
-class _CollapsibleSidebarState extends State<CollapsibleSidebar>
-    with SingleTickerProviderStateMixin {
+class _CollapsibleSidebarState extends State<CollapsibleSidebar> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _widthAnimation;
   late CurvedAnimation _curvedAnimation;
   late double tempWidth;
 
   var _isCollapsed;
-  late double _currWidth,
-      _delta,
-      _delta1By4,
-      _delta3by4,
-      _maxOffsetX,
-      _maxOffsetY;
+  late double _currWidth, _delta, _delta1By4, _delta3by4, _maxOffsetX, _maxOffsetY;
   late int _selectedItemIndex;
 
   @override
@@ -210,9 +187,7 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar>
       setState(() => _isCollapsed = true);
     else {
       var threshold = _isCollapsed ? _delta1By4 : _delta3by4;
-      var endWidth = _currWidth - widget.minWidth > threshold
-          ? tempWidth
-          : widget.minWidth;
+      var endWidth = _currWidth - widget.minWidth > threshold ? tempWidth : widget.minWidth;
       _animateTo(endWidth);
     }
   }
@@ -284,21 +259,17 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar>
 
     return _isCollapsed
         ? Stack(
-            alignment: Directionality.of(context) == TextDirection.ltr
-                ? Alignment.topLeft
-                : Alignment.topRight,
+            alignment: Directionality.of(context) == TextDirection.ltr ? Alignment.topLeft : Alignment.topRight,
             children: [
               Padding(
-                padding: EdgeInsets.only(left: widget.minWidth * 1.1),
+                padding: widget.direction == TextDirection.ltr ? EdgeInsets.only(left: widget.minWidth * 1.1) : EdgeInsets.only(right: widget.minWidth * 1.1),
                 child: widget.body,
               ),
               sidebar,
             ],
           )
         : Stack(
-            alignment: Directionality.of(context) == TextDirection.ltr
-                ? Alignment.topLeft
-                : Alignment.topRight,
+            alignment: Directionality.of(context) == TextDirection.ltr ? Alignment.topLeft : Alignment.topRight,
             children: [
               widget.collapseOnBodyTap
                   ? GestureDetector(
@@ -307,12 +278,12 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar>
                         _animateTo(widget.minWidth);
                       },
                       child: Padding(
-                        padding: EdgeInsets.only(left: widget.minWidth * 1.1),
+                        padding: widget.direction == TextDirection.ltr ? EdgeInsets.only(left: widget.minWidth * 1.1) : EdgeInsets.only(right: widget.minWidth * 1.1),
                         child: widget.body,
                       ),
                     )
                   : Padding(
-                      padding: EdgeInsets.only(left: widget.minWidth * 1.1),
+                      padding: widget.direction == TextDirection.ltr ? EdgeInsets.only(left: widget.minWidth * 1.1) : EdgeInsets.only(right: widget.minWidth * 1.1),
                       child: widget.body,
                     ),
               sidebar,
@@ -417,8 +388,7 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar>
         ),
       ),
       title: widget.toggleTitle,
-      textStyle:
-          _textStyle(widget.unselectedTextColor, widget.toggleTitleStyle),
+      textStyle: _textStyle(widget.unselectedTextColor, widget.toggleTitleStyle),
       isCollapsed: _isCollapsed,
       minWidth: widget.minWidth,
       onTap: () {
