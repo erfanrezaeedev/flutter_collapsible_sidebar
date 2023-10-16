@@ -68,7 +68,7 @@ class _CollapsibleItemWidgetState extends State<CollapsibleItemWidget> {
                   onLongPress: widget.onLongPress,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       widget.leading,
                       widget.isCollapsed == false ? SizedBox(width: 10) : SizedBox.shrink(),
