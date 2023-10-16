@@ -67,11 +67,10 @@ class _CollapsibleItemWidgetState extends State<CollapsibleItemWidget> {
                   onTap: widget.onTap,
                   onLongPress: widget.onLongPress,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      
-                      widget.isCollapsed == false ? widget.leading : Expanded(child: widget.leading),
-                      widget.isCollapsed == false ? SizedBox(width: 10) :SizedBox.shrink(),
-                      widget.isCollapsed == false? _title:SizedBox.shrink()
+                     widget.leading ,
+                      _title
                     ],
                   ),
                 )
