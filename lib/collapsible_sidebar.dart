@@ -50,6 +50,7 @@ class CollapsibleSidebar extends StatefulWidget {
       this.collapseOnBodyTap = true,
       this.showTitle = true,
       this.direction = TextDirection.ltr,
+
       this.sidebarBoxShadow = const [
         BoxShadow(
           color: Colors.blue,
