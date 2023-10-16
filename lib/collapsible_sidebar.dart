@@ -217,15 +217,15 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar> with SingleTick
                 height: widget.topPadding,
               ),
               if (widget.header != null)
-                Divider(
-                  color: widget.unselectedIconColor,
-                  indent: 5,
-                  endIndent: 5,
-                  thickness: 1,
+                Container(
+                  margin: EdgeInsets.only(bottom: 10),
+                  child: Divider(
+                    color: widget.unselectedIconColor,
+                    indent: 5,
+                    endIndent: 5,
+                    thickness: 1,
+                  ),
                 ),
-              SizedBox(
-                height: 5,
-              ),
               Expanded(
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
