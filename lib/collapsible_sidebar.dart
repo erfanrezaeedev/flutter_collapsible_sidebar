@@ -216,12 +216,13 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar> with SingleTick
               SizedBox(
                 height: widget.topPadding,
               ),
-              Divider(
-                color: widget.unselectedIconColor,
-                indent: 5,
-                endIndent: 5,
-                thickness: 1,
-              ),
+              if (widget.header != null)
+                Divider(
+                  color: widget.unselectedIconColor,
+                  indent: 5,
+                  endIndent: 5,
+                  thickness: 1,
+                ),
               SizedBox(
                 height: 5,
               ),
@@ -309,7 +310,7 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar> with SingleTick
       padding: widget.itemPadding,
       offsetX: _offsetX,
       scale: _fraction,
-      leading: widget.header ?? SizedBox(),
+      leading: _avatar,
       title: widget.title,
       textStyle: _textStyle(widget.unselectedTextColor, widget.titleStyle),
       isCollapsed: _isCollapsed,
