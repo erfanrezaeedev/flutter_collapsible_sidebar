@@ -211,6 +211,7 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar> with SingleTick
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              widget.header ?? SizedBox(),
               widget.showTitle ? _avatar : const SizedBox(),
               SizedBox(
                 height: widget.topPadding,
@@ -308,7 +309,7 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar> with SingleTick
       padding: widget.itemPadding,
       offsetX: _offsetX,
       scale: _fraction,
-      leading: widget.header??SizedBox(),
+      leading: widget.header ?? SizedBox(),
       title: widget.title,
       textStyle: _textStyle(widget.unselectedTextColor, widget.titleStyle),
       isCollapsed: _isCollapsed,
