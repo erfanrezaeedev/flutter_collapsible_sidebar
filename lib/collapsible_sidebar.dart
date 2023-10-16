@@ -50,7 +50,7 @@ class CollapsibleSidebar extends StatefulWidget {
       this.collapseOnBodyTap = true,
       this.showTitle = true,
       this.direction = TextDirection.ltr,
-
+      this.header,
       this.sidebarBoxShadow = const [
         BoxShadow(
           color: Colors.blue,
@@ -77,6 +77,7 @@ class CollapsibleSidebar extends StatefulWidget {
   final VoidCallback? onTitleTap;
   final List<BoxShadow> sidebarBoxShadow;
   final TextDirection? direction;
+  final Widget? header;
 
   @override
   _CollapsibleSidebarState createState() => _CollapsibleSidebarState();
@@ -214,6 +215,12 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar> with SingleTick
               SizedBox(
                 height: widget.topPadding,
               ),
+              Divider(
+                color: widget.unselectedIconColor,
+                indent: 5,
+                endIndent: 5,
+                thickness: 1,
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
@@ -298,19 +305,7 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar> with SingleTick
       padding: widget.itemPadding,
       offsetX: _offsetX,
       scale: _fraction,
-      leading: widget.titleBack
-          ? Icon(
-              widget.titleBackIcon,
-              size: widget.iconSize,
-              color: widget.unselectedIconColor,
-            )
-          : CollapsibleAvatar(
-              backgroundColor: widget.unselectedIconColor,
-              avatarSize: widget.iconSize,
-              name: widget.title,
-              avatarImg: widget.avatarImg,
-              textStyle: _textStyle(widget.backgroundColor, widget.titleStyle),
-            ),
+      leading: widget.header??SizedBox(),
       title: widget.title,
       textStyle: _textStyle(widget.unselectedTextColor, widget.titleStyle),
       isCollapsed: _isCollapsed,
