@@ -68,7 +68,7 @@ class _CollapsibleItemWidgetState extends State<CollapsibleItemWidget> {
                   onLongPress: widget.onLongPress,
                   child: Row(
                     children: [
-                     widget.leading ,
+                    Flexible(child: widget.leading),
                       SizedBox(width: 10,),
                       _title
                     ],
