@@ -221,6 +221,9 @@ class _CollapsibleSidebarState extends State<CollapsibleSidebar> with SingleTick
                 endIndent: 5,
                 thickness: 1,
               ),
+              SizedBox(
+                height: 5,
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
